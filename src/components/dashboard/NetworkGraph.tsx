@@ -110,7 +110,9 @@ export function NetworkGraph({ data }: NetworkGraphProps) {
       event.subject.fy = null;
     }
 
-    return () => simulation.stop();
+    return () => {
+      simulation.stop();
+    };
   }, [data]);
 
   return (

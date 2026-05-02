@@ -64,7 +64,8 @@ export async function POST(req: Request) {
     // Merge time data from original comments
     const timeSeriesMap: Record<string, any> = {};
     comments.forEach((c, index) => {
-      const date = new Date(c.publishedAt).toISOString().split('T')[0];
+      const publishedDate = c.publishedAt ? new Date(c.publishedAt) : new Date();
+      const date = publishedDate.toISOString().split('T')[0];
       if (!timeSeriesMap[date]) {
         timeSeriesMap[date] = { time: date, positive: 0, negative: 0, neutral: 0, count: 0 };
       }
